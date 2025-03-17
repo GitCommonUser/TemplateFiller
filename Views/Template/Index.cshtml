@@ -1,0 +1,44 @@
+@model List<TemplateFiller.Models.Template>
+
+@{
+    ViewData["Title"] = "Шаблоны";
+}
+
+<h2>Мои шаблоны</h2>
+
+<a asp-controller="Template" asp-action="Create" class="menu-button")">&#128193 Новый шаблон</a>
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var template in Model)
+            {
+                <tr>
+                    <td>@template.Name</td>
+                    <td class="table-action-column">
+                        <form asp-action="Details" asp-route-id="@template.Id" method="post">
+                            <button type="submit" class="reg-button info">Просмотреть</button>
+                        </form>
+
+                        <form asp-action="Delete" asp-route-id="@template.Id" method="post"
+                            onsubmit="return confirm('Вы уверены, что хотите удалить этот шаблон?');">
+                            <button type="submit" class="reg-button danger">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="no-content">
+        <p>Добавьте шаблон и он обязательно появится тут :)</p>
+    </div>
+}

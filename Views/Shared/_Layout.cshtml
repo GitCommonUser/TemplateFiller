@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TF - @ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="wrapper">
+    @{
+        var controller = ViewContext.RouteData.Values["Controller"] as string;
+        var action = ViewContext.RouteData.Values["Action"] as string;
+    }
+    
+    <header>
+        <nav>
+            <a asp-controller="Home" asp-action="Index" class="menu-button @(controller == "Home" && action == "Index" ? "active" : "")">&#128196 Документы</a>
+            <a asp-controller="Template" asp-action="Index" class="menu-button @(controller == "Template" && action == "Index" ? "active" : "")">&#128193 Шаблоны</a>
+            <a asp-controller="Log" asp-action="Index" class="menu-button @(controller == "Log" && action == "Index" ? "active" : "")">&#128221 История</a>
+        </nav>
+    </header>
+
+    <div class="container main-content">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - TemplateFiller
+        </div>
+    </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

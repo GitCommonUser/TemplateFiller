@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = @ViewData["DocumentName"];
+}
+
+<h2>@ViewData["DocumentName"]</h2>
+
+<div class="text-wrap">
+    <pre class="pre-text-wrap">@ViewData["FileContent"]</pre>
+</div>
+
+<a asp-action="Index" class="reg-button danger">Назад</a>

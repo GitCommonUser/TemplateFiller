@@ -1,0 +1,40 @@
+@model List<TemplateFiller.Models.Log>
+
+@{
+    ViewData["Title"] = "История";
+}
+
+<h2>История</h2>
+
+
+<form asp-action="ClearLogs" method="post"
+    onsubmit="return confirm('Вы уверены, что хотите очистить историю?');">
+    <button type="submit" class="menu-button">&#128221 Очистить историю</button>
+</form>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Запись</th>
+                <th>Дата</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in Model)
+            {
+                <tr>
+                    <td>@log.Action</td>
+                    <td>@log.Date</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="no-content">
+        <p>Сделайте что-нибудь и это обязательно появится здесь :)</p>
+    </div>
+}

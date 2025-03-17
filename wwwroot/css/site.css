@@ -1,0 +1,171 @@
+html, body {
+    margin-left: 20%;
+    margin-right: 20%;
+    width: 60%;
+    height: 100%;
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    flex-shrink: 0;
+    padding: 10px;
+}
+
+header {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-button {
+    padding-right: 10px;
+    padding-left: 10px;
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 20px;
+    background-color: rgb(232, 232, 232);
+    min-width: 170px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    transition-duration: 0.4s;
+    text-decoration: none;
+    color: black;
+}
+
+.menu-button.active {
+    background-color: #99eb5e;
+    text-decoration: none;
+    color: black;
+}
+
+.menu-button:hover {
+    background-color: #b4ff7f;
+    text-decoration: none;
+    color: black;
+}
+
+.table-action-column {
+    display: flex;
+}
+
+.reg-button {
+    padding-right: 10px;
+    padding-left: 10px;
+    display: inline-block;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 5px;
+    background-color: rgb(232, 232, 232);
+    min-width: 100px;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    transition-duration: 0.4s;
+    text-decoration: none;
+    color: black;
+}
+
+.reg-button.active {
+    background-color: #99eb5e;
+    text-decoration: none;
+    color: black;
+}
+
+.reg-button:hover {
+    background-color: #b4ff7f;
+    text-decoration: none;
+    color: black;
+}
+
+.reg-button.danger {
+    background-color: rgb(182, 71, 71);
+    color: white
+}
+
+.reg-button.danger:hover {
+    background-color: rgb(212, 60, 60);
+    color:white
+}
+
+.reg-button.success {
+    background-color: rgb(49, 150, 54);
+    color: white
+}
+
+.reg-button.success:hover {
+    background-color: rgb(46, 194, 53);
+    color: white
+}
+
+.reg-button.info {
+    background-color: rgb(27, 107, 212);
+    color: white
+}
+
+.reg-button.info:hover {
+    background-color: rgb(15, 119, 255);
+    color: white
+}
+
+.reg-button.warning {
+    background-color: rgb(209, 180, 15);
+    color: white
+}
+
+.reg-button.warning:hover {
+    background-color: rgb(240, 206, 15);
+    color: white
+}
+
+.pre-text-wrap {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.form-control {
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.text-danger {
+    display: block;
+    height: 1rem;
+    color: red;
+}
+
+.no-content {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    color: rgb(197, 197, 197,0.5);
+    font-size: 40px;
+    text-align: center;
+}

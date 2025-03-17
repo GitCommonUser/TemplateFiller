@@ -1,0 +1,96 @@
+@model TemplateFiller.ViewModels.CreateDocumentViewModel;
+
+@{
+    ViewData["Title"] = "Новый документ";
+}
+
+
+<h2>Новый документ</h2>
+
+<form asp-action="Create" method="post" id="documentForm">
+
+    <div class="form-group">
+        <label>Выберите шаблон</label>
+        <select asp-for="SelectedTemplateId" class="form-control" id="templateDropdown">
+            <option value="">-- Выберите шаблон --</option>
+            @foreach (var template in Model.Templates)
+            {
+                <option value="@template.Id">@template.Name</option>
+            }
+        </select>
+        <span asp-validation-for="SelectedTemplateId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DocumentViewModelName"></label>
+        <input asp-for="DocumentViewModelName" class="form-control" />
+        <span asp-validation-for="DocumentViewModelName" class="text-danger"></span>
+    </div>
+
+    <div id="variablesContainer">
+    </div>
+
+    <div class="form-group">
+        <a asp-action="Index" class="reg-button danger">Отмена</a>
+        <button type="submit" class="reg-button success">Создать</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        document.getElementById('templateDropdown').addEventListener('change', function () {
+            var templateId = this.value;
+            if (templateId) {
+                fetch(`/Home/GetTemplateVariables?templateId=${templateId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        var container = document.getElementById('variablesContainer');
+                        container.innerHTML = ''; 
+
+                        data.forEach(variable => {
+                            var div = document.createElement('div');
+                            div.className = 'form-group';
+
+                            var label = document.createElement('label');
+                            label.textContent = variable;
+                            div.appendChild(label);
+
+                            var input = document.createElement('input');
+                            input.type = 'text';
+                            input.name = `Variables[${variable}]`;
+                            input.className = 'form-control';
+                            input.required = true;
+                            div.appendChild(input);
+
+                            var validationSpan = document.createElement('span');
+                            validationSpan.className = 'text-danger';
+                            validationSpan.textContent = 'Поле обязательно для заполнения';
+                            div.appendChild(validationSpan);
+
+                            container.appendChild(div);
+                        });
+                    });
+            } else {
+                document.getElementById('variablesContainer').innerHTML = ''; 
+            }
+        });
+
+
+
+        document.getElementById('documentForm').addEventListener('submit', function (event) {
+            var isValid = true;
+            document.querySelectorAll('#variablesContainer input').forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.nextElementSibling.textContent = 'Поле обязательно для заполнения';
+                } else {
+                    input.nextElementSibling.textContent = '';
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault(); 
+            }
+        });
+    </script>
+}

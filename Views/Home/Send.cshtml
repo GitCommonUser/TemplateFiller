@@ -1,0 +1,22 @@
+@model TemplateFiller.ViewModels.SendDocumentViewModel
+
+@{
+    ViewData["Title"] = "Отправить документ";
+}
+
+<h2>Отправить документ</h2>
+
+<form asp-action="Send" method="post">
+    <input type="hidden" asp-for="DocumentId" />
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <a asp-action="Index" class="reg-button danger">Отмена</a>
+        <button type="submit" class="reg-button success">Отправить</button>
+    </div>
+</form>
